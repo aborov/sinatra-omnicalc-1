@@ -1,5 +1,5 @@
 require "./app"
-require "activesupport/all"
+#require "activesupport #/all"
 
 configure :development do
   require "sinatra/reloader"
