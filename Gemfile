@@ -29,3 +29,7 @@ group :test do
   gem "webdrivers"
   gem "i18n"
 end
+
+gem 'activesupport'
+gem 'rack'
+gem 'rackup'
