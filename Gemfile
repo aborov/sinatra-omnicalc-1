@@ -30,6 +30,6 @@ group :test do
   gem "i18n"
 end
 
-gem 'activesupport', '~> 6.0'
-gem 'rack'
-gem 'rackup'
+gem "activesupport"
+gem "rack"
+gem "rackup"
