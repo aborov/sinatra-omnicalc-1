@@ -39,3 +39,7 @@ end
 get("/payment/new") do
   erb(:payment_new)
 end
+
+get("/payment/results") do
+  erb(:payment_results)
+end
