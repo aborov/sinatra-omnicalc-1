@@ -41,13 +41,16 @@ get("/payment/new") do
 end
 
 get("/payment/results") do
-  r = params.fetch("user_apr").to_f / 100 / 12
-  @p_apr = params.fetch("user_apr").to_f.to_fs(:percentage, { :precision => 4 } )
+  user_apr = params.fetch("user_apr").to_f
+  @p_apr = format("%.4f%%", user_apr)  # Formats APR with 4 decimal places and "%"
   @p_years = params.fetch("user_years").to_i
-  n = @p_years * 12
   pv = params.fetch("user_pv").to_f
-  @p_principal = pv.to_fs(:currency)
+  @p_principal = format("$%0.2f", pv).gsub(/(\d)(?=(\d{3})+(?!\d))/, '\1,')  # Adds commas
+
+  r = user_apr / 100 / 12
+  n = @p_years * 12
   p = (r * pv) / (1 - ((1 + r) ** (-n)))
-  @p_result = p.to_fs(:currency)
+  @p_result = format("$%0.2f", p).gsub(/(\d)(?=(\d{3})+(?!\d))/, '\1,')  # Adds commas
+
   erb(:payment_results)
 end
